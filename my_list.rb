@@ -1,0 +1,3 @@
+module MyEnum
+
+end
