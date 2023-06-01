@@ -11,6 +11,13 @@ module MyEnum
           return true if yield x
         end
         false
-      end
-      
+    end
+
+    def filter
+        new_list = []
+        each do |x|
+          new_list << x if yield x
+        end
+        new_list
+    end
 end
