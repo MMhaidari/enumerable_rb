@@ -1,4 +1,4 @@
-require_relative './my_enumeable'
+require_relative './enumerable'
 class MyList
   def initialize(*arr)
     @list = arr
