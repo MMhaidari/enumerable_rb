@@ -1,23 +1,16 @@
-module MyEnum
-    def all?
-        each do |x|
-          return false unless yield x
-        end
-        true
-    end
-
-    def any?
-        each do |x|
-          return true if yield x
-        end
-        false
-    end
-
-    def filter
-        new_list = []
-        each do |x|
-          new_list << x if yield x
-        end
-        new_list
-    end
-end
+require_relative './my_enumeable' 
+class MyList 
+  def initialize(*arr) 
+    @list = arr 
+  end 
+  include MyEnum 
+  def each(&block) 
+    @list.each { |x| block.call(x) } 
+  end 
+end 
+list = MyList.new(1, 2, 3, 4) 
+puts(list.all? { |e| e < 5 }) 
+puts(list.all? { |e| e > 5 }) 
+puts(list.any? { |e| e == 2 }) 
+puts(list.any? { |e| e == 5 }) 
+puts(list.filter(&:even?)) 
